@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Download, Info, Copy, CheckCircle, Send } from "lucide-react";
 
-const GOOGLE_SCRIPT_URL = "https://script.google.com/a/macros/uwcthailand.ac.th/s/AKfycbzMCRI1AkTPGlGrsxoHCaaKJeaMa8mg7Dcggt8zz5Su/dev?pli=1&authuser=0; // Replace with your script URL
+const GOOGLE_SCRIPT_URL = "https://script.google.com/a/macros/uwcthailand.ac.th/s/AKfycbzMCRI1AkTPGlGrsxoHCaaKJeaMa8mg7Dcggt8zz5Su/dev";
 
 const DEFAULT_SCORE = 6;
 const CATEGORIES = [
