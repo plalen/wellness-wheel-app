@@ -1,7 +1,17 @@
 import React, { useState, useRef } from "react";
 import { Download, Info, Copy, CheckCircle, Send } from "lucide-react";
+import {
+  Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer
+} from 'recharts';
 
 const GOOGLE_SCRIPT_URL = "https://script.google.com/a/macros/uwcthailand.ac.th/s/AKfycbzMCRI1AkTPGlGrsxoHCaaKJeaMa8mg7Dcggt8zz5Su/dev";
+
+const getRadarData = () => {
+  return CATEGORIES.map(cat => ({
+    category: cat.name.split('&')[0].trim(), // shorten long labels
+    score: scores[cat.key],
+  }));
+};
 
 const DEFAULT_SCORE = 6;
 const CATEGORIES = [
@@ -117,5 +127,21 @@ const WellnessWheel = () => {
     </div>
   );
 };
+
+{submitted && (
+  <div className="mt-10">
+    <h2 className="text-xl font-bold mb-4">Visual Summary</h2>
+    <div className="bg-white p-4 rounded shadow-sm w-full max-w-2xl mx-auto">
+      <ResponsiveContainer width="100%" height={400}>
+        <RadarChart cx="50%" cy="50%" outerRadius="80%" data={getRadarData()}>
+          <PolarGrid />
+          <PolarAngleAxis dataKey="category" tick={{ fontSize: 10 }} />
+          <PolarRadiusAxis angle={30} domain={[0, 10]} />
+          <Radar name="Your Score" dataKey="score" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.4} />
+        </RadarChart>
+      </ResponsiveContainer>
+    </div>
+  </div>
+)}
 
 export default WellnessWheel;
